@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  service1:
+    image: nginx-ip
+    ports:
+      - "80" # Dynamic port mapping
+
+  service2:
+    image: nginx:latest
+    volumes:
+      - ./nginx2.conf:/etc/nginx/nginx.conf
+      # :ro
+    depends_on:
+        - service1
+    ports:
+      - "80:80"
